@@ -1,0 +1,70 @@
+{
+  "entities": {
+    "Doctor": {
+      "title": "Doctor",
+      "description": "A doctor profile in the clinic.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Doctor's name" },
+        "specialization": { "type": "string", "description": "Doctor's specialization" },
+        "bio": { "type": "string", "description": "Short biography" },
+        "imageUrl": { "type": "string", "description": "URL of the doctor's photo" },
+        "createdAt": { "type": "number", "description": "Creation timestamp" }
+      },
+      "required": ["name", "specialization", "bio", "imageUrl", "createdAt"]
+    },
+    "Service": {
+      "title": "Service",
+      "description": "A service offered by the clinic.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Service title" },
+        "description": { "type": "string", "description": "Service description" },
+        "imageUrl": { "type": "string", "description": "URL of the service image" },
+        "createdAt": { "type": "number", "description": "Creation timestamp" }
+      },
+      "required": ["title", "description", "imageUrl", "createdAt"]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "A patient testimonial.",
+      "type": "object",
+      "properties": {
+        "patientName": { "type": "string", "description": "Name of the patient" },
+        "feedback": { "type": "string", "description": "Testimonial content" },
+        "rating": { "type": "number", "description": "Rating from 1 to 5" },
+        "createdAt": { "type": "number", "description": "Creation timestamp" }
+      },
+      "required": ["patientName", "feedback", "rating", "createdAt"]
+    },
+    "User": {
+      "title": "User",
+      "description": "A user of the system (admin or patient).",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "description": "User's email address" },
+        "role": { "type": "string", "enum": ["admin", "patient"], "description": "Role of the user" },
+        "createdAt": { "type": "number", "description": "Creation timestamp" }
+      },
+      "required": ["email", "role", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/doctors/{doctorId}": {
+      "schema": { "$ref": "#/entities/Doctor" },
+      "description": "Collection of doctors."
+    },
+    "/services/{serviceId}": {
+      "schema": { "$ref": "#/entities/Service" },
+      "description": "Collection of services."
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": { "$ref": "#/entities/Testimonial" },
+      "description": "Collection of patient testimonials."
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Collection of users."
+    }
+  }
+}
